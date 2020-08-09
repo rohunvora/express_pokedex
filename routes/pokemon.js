@@ -1,9 +1,21 @@
 var express = require('express');
+var axios = require('axios')
 var router = express.Router();
 var db = require('../models')
 
+
 // GET /pokemon - return a page with favorited Pokemon
-router.get('/', function(req, res) {
+router.get('/', async (req, res) => {
+
+  try {
+    let locatePoke = await db.pokemon.findAll()
+    console.log(locatePoke);
+    res.render('faves', {pokemon:locatePoke})
+  } catch (error) {
+    res.render(error)
+    }
+  });
+
   db.pokemon.create({
     name: 'Pikachu'
   }).then(function(poke) {
@@ -14,8 +26,7 @@ router.get('/', function(req, res) {
     console.log('Found: ', poke.name)
   })
   // TODO: Get all records from the DB and render to view
-  res.send('Render a page of favorites here');
-});
+  // res.render('pokemon/faves');
 
 // POST /pokemon - receive the name of a pokemon and add it to the database
 router.post('/', function(req, res) {
