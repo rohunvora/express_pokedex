@@ -3,11 +3,12 @@
 
   <% pokemon.forEach(function(p) { %>
   <div class="well">
-    <a href="/pokemon/">Pokemon</a>
+
     <h2><%= p.name %></h2>
     <form method="POST" action="/pokemon">
       <input hidden type="text" name="name" value="<%= p.name %>">
     </form>
+    <a href="/pokemon/<%= p.name %>">See Details</a>
   </div>
   <% }); %>
 </div>
