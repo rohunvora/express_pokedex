@@ -1,3 +1,8 @@
 body {
-  background-color: yellow;
+  background-color: whitesmoke;
+  text-align: center;
+}
+
+a {
+  color: white !important;
 }
